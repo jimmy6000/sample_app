@@ -7,10 +7,14 @@ gem 'rails', '3.2.0'
 
 gem 'sqlite3'
 gem 'rspec-rails'
+gem 'guard-rspec'
 
 group :test do
   gem 'selenium-webdriver'
   gem 'capybara'
+  gem 'spork-rails', github: 'sporkrb/spork-rails'
+  gem 'guard-spork', '1.5.0'
+  gem 'childprocess', '0.3.6'
 end
 
 # Gems used only for assets and not required
@@ -26,6 +30,8 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'jbuilder'
+gem 'turbolinks'
 
 group :production do
   gem 'pg'
