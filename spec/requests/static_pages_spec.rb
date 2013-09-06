@@ -1,64 +1,39 @@
 require 'spec_helper'
 
 describe "Static pages" do
-	let (:title_script) {"Ruby on Rails Tutorial Sample App"}
 
-  describe "Home page" do
+ subject { page }
 
-    it "should have the content 'Sample App'" do
-      visit '/static_pages/home'
-      expect(page).to have_content('Sample App')
-    end
+ describe "Home page" do
 
-    it "should have the base title" do
-  	 visit '/static_pages/home'
-  	 expect(page).to have_title("Ruby on Rails Tutorial Sample App")
-   end
-
-    it "should not have a custom page title" do
-      visit '/static_pages/home'
-      expect(page).not_to have_title('| Home')
-    end
+  before { visit root_path } 
+   
+    it { should have_selector('h1',    text: 'Sample App') }
+    it { should have_selector('title', text: full_title('')) }
+    it { should_not have_selector 'title', text: '| Home' }
   end
 
   describe "Help page" do
+   before { visit help_path } 
 
-    it "should have the content 'Help'" do
-      visit '/static_pages/help'
-      expect(page).to have_content('Help')
-    end
-
-    it "should have the base title" do
-  	 visit '/static_pages/help'
-  	 expect(page).to have_title("#{title_script} | Help")
-    end
-   end
+    it { should have_selector('h1',    text: 'Help') }
+    it { should have_selector('title', text: full_title('Help')) }
+  
+  end
 
   describe "About page" do
+   before { visit about_path } 
+    
+    it { should have_selector('h1',    text: 'About Us') }
+    it { should have_selector('title', text: full_title('About Us')) }
 
-    it "should have the content 'About'" do
-      visit '/static_pages/about'
-      expect(page).to have_content('About')
-    end
+  
+  end
 
-    it "should have the base title" do
-  	 visit '/static_pages/about'
-  	 expect(page).to have_title("#{title_script} | About")
-    end
-   end
-
-    describe "Contact page" do
-
-    it "should have the content 'Contact'" do
-      visit '/static_pages/contact'
-      expect(page).to have_content('Contact')
-    end
-
-    it "should have the base title" do
-  	 visit '/static_pages/contact'
-  	 expect(page).to have_title("#{title_script} | Contact")
-    end
-   end
-
- 
+  describe "Contact page" do
+   before { visit contact_path } 
+   
+    it { should have_selector('h1',    text: 'Contact Us') }
+    it { should have_selector('title', text: full_title('Contact Us')) }
+  end
 end
